@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		298572D01E7E117000954762 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298572CF1E7E117000954762 /* UIColor+Extension.swift */; };
 		2995E3741E7B12A100C55775 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2995E3731E7B12A100C55775 /* AppDelegate.swift */; };
 		2995E3761E7B12A100C55775 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2995E3751E7B12A100C55775 /* ViewController.swift */; };
 		2995E3791E7B12A100C55775 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2995E3771E7B12A100C55775 /* Main.storyboard */; };
@@ -36,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		298572CF1E7E117000954762 /* UIColor+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		2995E3701E7B12A100C55775 /* RadioButton.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RadioButton.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2995E3731E7B12A100C55775 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2995E3751E7B12A100C55775 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -105,6 +107,7 @@
 				2995E3751E7B12A100C55775 /* ViewController.swift */,
 				2995E3A11E7B12D000C55775 /* WGRadioGroup.swift */,
 				2995E3A31E7B24F000C55775 /* WGRadioButton.swift */,
+				298572CF1E7E117000954762 /* UIColor+Extension.swift */,
 				2995E3771E7B12A100C55775 /* Main.storyboard */,
 				2995E37A1E7B12A100C55775 /* Assets.xcassets */,
 				2995E37C1E7B12A100C55775 /* LaunchScreen.storyboard */,
@@ -273,6 +276,7 @@
 				2995E3A21E7B12D000C55775 /* WGRadioGroup.swift in Sources */,
 				2995E3741E7B12A100C55775 /* AppDelegate.swift in Sources */,
 				2995E3A41E7B24F000C55775 /* WGRadioButton.swift in Sources */,
+				298572D01E7E117000954762 /* UIColor+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -525,6 +529,7 @@
 				2995E39A1E7B12A200C55775 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		2995E39B1E7B12A200C55775 /* Build configuration list for PBXNativeTarget "RadioButtonTests" */ = {
 			isa = XCConfigurationList;
@@ -533,6 +538,7 @@
 				2995E39D1E7B12A200C55775 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		2995E39E1E7B12A200C55775 /* Build configuration list for PBXNativeTarget "RadioButtonUITests" */ = {
 			isa = XCConfigurationList;
@@ -541,6 +547,7 @@
 				2995E3A01E7B12A200C55775 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

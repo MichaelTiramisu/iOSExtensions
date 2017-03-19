@@ -45,13 +45,15 @@ class WGRadioButton: UIControl {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-//        addTouchEvent()
+        // Set the background color to transparent
+        // or it will be black
         backgroundColor = UIColor.clear
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-//        addTouchEvent()
+        // Set the background color to transparent
+        // or it will be black
         backgroundColor = UIColor.clear
     }
     
@@ -82,14 +84,5 @@ class WGRadioButton: UIControl {
             innerCirclePath.fill()
         }
     }
-    
-    // Add the touch event for the button itself to listen if it is clicked
-    func addTouchEvent() {
-        addTarget(self, action: #selector(buttonClick), for: .touchUpInside)
-    }
-    
-    func buttonClick() {
-        print("Clicked")
-        isSelected = !isSelected
-    }
+
 }
