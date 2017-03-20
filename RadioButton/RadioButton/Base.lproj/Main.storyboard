@@ -23,8 +23,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u40-JY-lOh" customClass="WGRadioGroup" customModule="RadioButton" customModuleProvider="target">
-                                <rect key="frame" x="67" y="245" width="240" height="177"/>
+                                <rect key="frame" x="67" y="120" width="240" height="208"/>
                                 <color key="backgroundColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="208" id="ksp-dU-DeO"/>
+                                </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="numberOfChoices">
                                         <integer key="value" value="4"/>
@@ -40,45 +43,66 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SYQ-K0-STo">
-                                <rect key="frame" x="29" y="502" width="123" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SYQ-K0-STo">
+                                <rect key="frame" x="29" y="514" width="123" height="30"/>
                                 <state key="normal" title="Multiple Selection"/>
                                 <connections>
                                     <action selector="multipleSelectionButtonClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="6jx-J1-pfW"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="THR-Mn-Voy">
-                                <rect key="frame" x="192" y="502" width="127" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="THR-Mn-Voy">
+                                <rect key="frame" x="192" y="514" width="127" height="30"/>
                                 <state key="normal" title="Change Text Color"/>
                                 <connections>
                                     <action selector="changeTextColorButtonClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="5IT-ez-WeO"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EvR-av-Zej">
-                                <rect key="frame" x="25" y="575" width="132" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EvR-av-Zej">
+                                <rect key="frame" x="25" y="587" width="132" height="30"/>
                                 <state key="normal" title="Change outer color"/>
                                 <connections>
                                     <action selector="changeOuterColorButtonClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="QhI-Zb-dcj"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H1x-oj-kHb">
-                                <rect key="frame" x="193" y="575" width="130" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H1x-oj-kHb">
+                                <rect key="frame" x="193" y="587" width="130" height="30"/>
                                 <state key="normal" title="Change inner color"/>
                                 <connections>
                                     <action selector="changeinnerColorButtonClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="lOT-jt-Kah"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WQv-o0-vAy">
+                                <rect key="frame" x="25" y="453" width="111" height="30"/>
+                                <state key="normal" title="Change choices"/>
+                                <connections>
+                                    <action selector="changeChoicesButtonClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Iai-aN-Fo0"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sT1-Ay-mUG">
+                                <rect key="frame" x="181" y="453" width="151" height="30"/>
+                                <state key="normal" title="Change Choice Count"/>
+                                <connections>
+                                    <action selector="ChangeChoiceCountButtonClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="geN-Cs-CCe"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="u40-JY-lOh" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="HoM-4i-Np9"/>
-                            <constraint firstItem="u40-JY-lOh" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="51" id="dOl-Kx-u8x"/>
-                            <constraint firstItem="u40-JY-lOh" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="fov-BF-5mw"/>
-                            <constraint firstItem="u40-JY-lOh" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="225" id="sqv-pK-n4I"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="THR-Mn-Voy" secondAttribute="trailing" constant="40" id="01B-CN-xJ9"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="EvR-av-Zej" secondAttribute="bottom" constant="50" id="1FU-7W-8kd"/>
+                            <constraint firstItem="u40-JY-lOh" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="7Pf-db-pt7"/>
+                            <constraint firstItem="EvR-av-Zej" firstAttribute="top" secondItem="SYQ-K0-STo" secondAttribute="bottom" constant="43" id="9rd-Yn-2jy"/>
+                            <constraint firstItem="H1x-oj-kHb" firstAttribute="top" secondItem="THR-Mn-Voy" secondAttribute="bottom" constant="43" id="G4J-5Z-NtG"/>
+                            <constraint firstItem="u40-JY-lOh" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="51" id="Iej-eD-ptK"/>
+                            <constraint firstItem="SYQ-K0-STo" firstAttribute="top" secondItem="WQv-o0-vAy" secondAttribute="bottom" constant="31" id="RCv-70-sc3"/>
+                            <constraint firstItem="THR-Mn-Voy" firstAttribute="top" secondItem="sT1-Ay-mUG" secondAttribute="bottom" constant="31" id="VAi-M9-K4j"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="H1x-oj-kHb" secondAttribute="trailing" constant="36" id="WOT-Wg-YyL"/>
+                            <constraint firstItem="EvR-av-Zej" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="9" id="Zw8-9M-GyY"/>
+                            <constraint firstItem="SYQ-K0-STo" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="13" id="aT0-kl-ym2"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="sT1-Ay-mUG" secondAttribute="trailing" constant="27" id="gzZ-DR-Vdj"/>
+                            <constraint firstItem="WQv-o0-vAy" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="9" id="iVz-1i-0FX"/>
+                            <constraint firstItem="u40-JY-lOh" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="100" id="rDP-gV-SQ9"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="H1x-oj-kHb" secondAttribute="bottom" constant="50" id="wJr-jh-8iu"/>
                         </constraints>
                     </view>
                     <connections>

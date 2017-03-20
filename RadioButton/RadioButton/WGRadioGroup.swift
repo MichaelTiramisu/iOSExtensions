@@ -35,7 +35,7 @@ class WGRadioGroup: UIView {
         set {
             _selected = newValue
             // Change the selected status of the radio button
-            for i in 0..<numberOfChoices {
+            for i in 0..<_numberOfChoices {
                 radioButtons[i].isSelected = newValue[i]
             }
         }
@@ -43,10 +43,26 @@ class WGRadioGroup: UIView {
             return _selected
         }
     }
-    
+        
     // Store the choice string
     private var _choices = [String]()
     
+    // The external access of the _choices
+    public var choices: [String] {
+        set {
+            // Resetup the variables
+            setupVariables(withChoices: newValue)
+            // Resetup the UI
+            setupUI()
+            // Relayout the UI
+            // 很神奇，他会自动帮你调用
+//            setNeedsLayout()
+        }
+        get {
+            return _choices
+        }
+    }
+
     // Store the radio buttons
     private var radioButtons = [WGRadioButton]()
     
@@ -62,7 +78,7 @@ class WGRadioGroup: UIView {
                 // just delect all of it except the first selection
                 var firstSelectionFound = false
                 var tempSelected = _selected
-                for i in 0..<numberOfChoices {
+                for i in 0..<_numberOfChoices {
                     if tempSelected[i] {
                         if !firstSelectionFound {
                             // This one ramins true, and just set the flag to true
@@ -83,24 +99,48 @@ class WGRadioGroup: UIView {
     @IBInspectable
     public var textColor: UIColor = UIColor.black {
         didSet {
-            for i in 0..<numberOfChoices {
+            for i in 0..<_numberOfChoices {
                 buttons[i].setTitleColor(textColor, for: .normal)
             }
         }
     }
     
     // The number of choices for the mutiple selections
+    private var _numberOfChoices: Int = UIConstants.defaultChoicesCount
+    
+    // The external access of the _numberOfChoices
     @IBInspectable
-    public var numberOfChoices: Int = UIConstants.defaultChoicesCount {
-        didSet {
-            // Make sure the number of choices is between [2, 6]
-            if numberOfChoices > UIConstants.maximumChoicesCount {
-                numberOfChoices = UIConstants.maximumChoicesCount
+    public var numberOfChoices: Int {
+        set {
+            let oldValue = _numberOfChoices
+            // Make sure the number of choices is between [min, max]
+            if newValue > UIConstants.maximumChoicesCount {
+                _numberOfChoices = UIConstants.maximumChoicesCount
+            } else if newValue < UIConstants.minimumChoicesCount {
+                _numberOfChoices = UIConstants.minimumChoicesCount
+            } else {
+                _numberOfChoices = newValue
             }
-            if numberOfChoices < UIConstants.minimumChoicesCount {
-                numberOfChoices = UIConstants.minimumChoicesCount
+            // Adjust the UI and other properties for the according to the choice count change
+            if _numberOfChoices > oldValue {
+                addChoices(by: _numberOfChoices - oldValue)
+                // Resetup the UI
+                setupUI()
+                // Relayout the UI
+                // 很神奇，他会自动帮你调用
+//                setNeedsLayout()
             }
-            setNeedsDisplay()
+            if _numberOfChoices < oldValue {
+                reduceChoices(by: oldValue - _numberOfChoices)
+                // Resetup the UI
+                setupUI()
+                // Relayout the UI
+                // 很神奇，他会自动帮你调用
+//                setNeedsLayout()
+            }
+        }
+        get {
+            return _numberOfChoices
         }
     }
     
@@ -108,7 +148,7 @@ class WGRadioGroup: UIView {
     @IBInspectable
     public var buttonColor: UIColor = UIColor.cyan {
         didSet {
-            for i in 0..<numberOfChoices {
+            for i in 0..<_numberOfChoices {
                 radioButtons[i].buttonColor = buttonColor
             }
         }
@@ -118,7 +158,7 @@ class WGRadioGroup: UIView {
     @IBInspectable
     public var borderColor: UIColor = UIColor.black {
         didSet {
-            for i in 0..<numberOfChoices {
+            for i in 0..<_numberOfChoices {
                 radioButtons[i].borderColor = borderColor
             }
         }
@@ -143,23 +183,84 @@ class WGRadioGroup: UIView {
     }
     
     // Method to initialize all the variables
+    // This is called when the radio group is first created
     private func setupVariables() {
         // Initialize all the selections variable with false
         // and set all the choice strings to empty
-        for _ in 0..<numberOfChoices {
+        for _ in 0..<_numberOfChoices {
             _selected.append(false)
-            _choices.append("aaaaaaaaaaaaaaaaaaaaaaaaaa")
+            _choices.append("")
+        }
+    }
+    
+    // Method to add the choice count
+    private func addChoices(by number: Int) {
+        for _ in 0..<number {
+            _selected.append(false)
+            _choices.append("")
+        }
+    }
+    
+    // Method to reduce the choice count
+    private func reduceChoices(by number: Int) {
+        for _ in 0..<number {
+            _selected.removeLast()
+            _choices.removeLast()
+        }
+    }
+    
+    // Method to initialize all the variables
+    // This is called when the chioices has been changed
+    private func setupVariables(withChoices choices: [String]) {
+        print(#function)
+        _choices = choices
+        // Make sure the number of choices is between [min, max]
+        // If it is smaller than the minimum value, just append empty string at last
+        if _choices.count < UIConstants.minimumChoicesCount {
+            for _ in _choices.count..<UIConstants.minimumChoicesCount {
+                _choices.append("")
+            }
+        }
+        // If it is greater than the maximum value, just remove the extra choices from the end
+        if _choices.count > UIConstants.maximumChoicesCount {
+            for _ in UIConstants.maximumChoicesCount..<_choices.count {
+                _choices.removeLast()
+            }
+        }
+        // Get the current number of choices
+        _numberOfChoices = _choices.count
+        // Reset all the selections variable with false
+        _selected.removeAll()
+        for _ in 0..<_numberOfChoices {
+            _selected.append(false)
         }
     }
     
     // Method to setup all the UI elements
     private func setupUI() {
+        print(#function)
+        // Clearn the subviews from the super view
+        for button in radioButtons {
+            button.removeFromSuperview()
+        }
+        for button in buttons {
+            button.removeFromSuperview()
+        }
+        // Clear all the radio buttons and buttons
+        radioButtons.removeAll()
+        buttons.removeAll()
+
         // Only add the UI elements in this method
         // and do not layout them
-        for i in 0..<numberOfChoices {
+        for i in 0..<_numberOfChoices {
             // Initialize a redio button, and set the tag for it
             let radioButton = WGRadioButton()
             radioButton.tag = i
+            // Set if the radio button is selected
+            radioButton.isSelected = _selected[i]
+            // Set the inner and outer color for the radio button
+            radioButton.borderColor = borderColor
+            radioButton.buttonColor = buttonColor
             // Add the target action for the radio button
             radioButton.addTarget(self, action: #selector(handleSelection(button:)), for: .touchUpInside)
             // Store the radio button in the array
@@ -185,8 +286,9 @@ class WGRadioGroup: UIView {
     }
     
     override func layoutSubviews() {
+        print(#function)
         super.layoutSubviews()
-        for i in 0..<numberOfChoices {
+        for i in 0..<_numberOfChoices {
             // Calculate the frame for the button
             // The origin x for the button
             let buttonX = UIConstants.marginWidthHeight * 2 + UIConstants.radioButtonWidthHeight
@@ -220,7 +322,7 @@ class WGRadioGroup: UIView {
                 var tempSelected = _selected
                 // Just allow one to be selected
                 // and check for the index to be the selected index
-                for i in 0..<numberOfChoices {
+                for i in 0..<_numberOfChoices {
                     if i == selectedIndex {
                         tempSelected[i] = true
                     } else {
