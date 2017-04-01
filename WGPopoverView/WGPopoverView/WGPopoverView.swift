@@ -24,8 +24,17 @@ class WGPopoverView: UIView {
         }
     }
     
+    // 箭头高度
     @IBInspectable
     var arrowHeight: CGFloat = 10.0 {
+        didSet {
+            setNeedsDisplay()
+        }
+    }
+    
+    @IBInspectable
+    // 箭头的水平偏移量
+    var arrowHorizontalOffset: CGFloat = 0 {
         didSet {
             setNeedsDisplay()
         }
@@ -63,10 +72,11 @@ class WGPopoverView: UIView {
         }
     }
     
+    
     override func draw(_ rect: CGRect) {
         let minX = rect.minX + UIConstants.border
         let maxX = rect.maxX - UIConstants.border
-        let midX = (minX + maxX) / 2
+        let midX = (minX + maxX) / 2 + arrowHorizontalOffset
         
         let minY = rect.minY + UIConstants.border
         let maxY = rect.maxY - arrowHeight - UIConstants.border

@@ -8,13 +8,14 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, WGSegmentedScaleDelegate {
 
     @IBOutlet weak var segmentedScale: WGSegmentedScale!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        segmentedScale.delegate = self
     }
 
     override func didReceiveMemoryWarning() {
@@ -27,5 +28,10 @@ class ViewController: UIViewController {
 //        segmentedScale.selectedIndex += 1
         segmentedScale.numberOfSegments += 1
     }
+    
+    func didSelectedIndexChange(in segmentedScale: WGSegmentedScale, from oldValue: Int, to newValue: Int) {
+        
+    }
+    
 }
 

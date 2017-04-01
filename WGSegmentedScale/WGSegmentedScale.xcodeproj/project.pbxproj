@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		296D1CE81E8DAA3900C1549B /* WGSegmentedScaleDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296D1CE71E8DAA3900C1549B /* WGSegmentedScaleDelegate.swift */; };
 		29C66AB91E8C665D00BBB4FB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C66AB81E8C665D00BBB4FB /* AppDelegate.swift */; };
 		29C66ABB1E8C665D00BBB4FB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C66ABA1E8C665D00BBB4FB /* ViewController.swift */; };
 		29C66ABE1E8C665D00BBB4FB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 29C66ABC1E8C665D00BBB4FB /* Main.storyboard */; };
@@ -36,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		296D1CE71E8DAA3900C1549B /* WGSegmentedScaleDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WGSegmentedScaleDelegate.swift; sourceTree = "<group>"; };
 		29C66AB51E8C665D00BBB4FB /* WGSegmentedScale.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WGSegmentedScale.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		29C66AB81E8C665D00BBB4FB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		29C66ABA1E8C665D00BBB4FB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -105,6 +107,7 @@
 				29C66ABA1E8C665D00BBB4FB /* ViewController.swift */,
 				29C66ABC1E8C665D00BBB4FB /* Main.storyboard */,
 				29C66AE61E8C66CF00BBB4FB /* WGSegmentedScale.swift */,
+				296D1CE71E8DAA3900C1549B /* WGSegmentedScaleDelegate.swift */,
 				29C66AE81E8C6B9400BBB4FB /* WGCircleView.swift */,
 				29C66ABF1E8C665D00BBB4FB /* Assets.xcassets */,
 				29C66AC11E8C665D00BBB4FB /* LaunchScreen.storyboard */,
@@ -271,6 +274,7 @@
 				29C66AE91E8C6B9400BBB4FB /* WGCircleView.swift in Sources */,
 				29C66ABB1E8C665D00BBB4FB /* ViewController.swift in Sources */,
 				29C66AB91E8C665D00BBB4FB /* AppDelegate.swift in Sources */,
+				296D1CE81E8DAA3900C1549B /* WGSegmentedScaleDelegate.swift in Sources */,
 				29C66AE71E8C66CF00BBB4FB /* WGSegmentedScale.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -522,6 +526,7 @@
 				29C66ADF1E8C665D00BBB4FB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		29C66AE01E8C665D00BBB4FB /* Build configuration list for PBXNativeTarget "WGSegmentedScaleTests" */ = {
 			isa = XCConfigurationList;
@@ -530,6 +535,7 @@
 				29C66AE21E8C665D00BBB4FB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		29C66AE31E8C665D00BBB4FB /* Build configuration list for PBXNativeTarget "WGSegmentedScaleUITests" */ = {
 			isa = XCConfigurationList;
@@ -538,6 +544,7 @@
 				29C66AE51E8C665D00BBB4FB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

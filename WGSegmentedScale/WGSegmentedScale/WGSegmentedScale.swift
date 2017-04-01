@@ -11,6 +11,9 @@ import UIKit
 @IBDesignable
 class WGSegmentedScale: UIView {
     
+    // 代理变量
+    public weak var delegate: WGSegmentedScaleDelegate?
+    
     private var circle = WGCircleView()
     // 记录圆是否在移动
     private var isMoving = false
@@ -87,7 +90,6 @@ class WGSegmentedScale: UIView {
     
     // MARK: - 点击的时间处理
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        print(#function)
         let currentPosition = touches.first!.location(in: self)
         // 判断点是否在可滑动区域
         if isPointInControlZone(currentPosition) {
@@ -104,7 +106,6 @@ class WGSegmentedScale: UIView {
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        print(#function)
         let currentPosition = touches.first!.location(in: self)
         // 判断是否处于移动状态, 并且需要在view上移动
         if (isMoving && self.bounds.contains(currentPosition)) {
@@ -123,15 +124,29 @@ class WGSegmentedScale: UIView {
     }
 
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        print(#function)
         isMoving = false
-        print(slideToNearestSegmentedPoint())
+        let oldValue = _selectedIndex
+        let newValue = slideToNearestSegmentedPoint()
+        // 代理回调
+        if let delegate = delegate {
+            if delegate.responds(to: #selector(WGSegmentedScaleDelegate.didSelectedIndexChange(in:from:to:))) {
+                delegate.didSelectedIndexChange(in: self, from: oldValue, to: newValue)
+            }
+        }
+        _selectedIndex = newValue
     }
     
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
-        print(#function)
         isMoving = false
-        print(slideToNearestSegmentedPoint())
+        let oldValue = _selectedIndex
+        let newValue = slideToNearestSegmentedPoint()
+        // 代理回调
+        if let delegate = delegate {
+            if delegate.responds(to: #selector(WGSegmentedScaleDelegate.didSelectedIndexChange(in:from:to:))) {
+                delegate.didSelectedIndexChange(in: self, from: oldValue, to: newValue)
+            }
+        }
+        _selectedIndex = newValue
     }
     
     // MARK: - 判断是否点击在了可滑动区域
