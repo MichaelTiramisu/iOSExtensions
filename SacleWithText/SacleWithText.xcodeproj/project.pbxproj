@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2920332D1E8F578A004146B7 /* WGPopoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292033281E8F578A004146B7 /* WGPopoverView.swift */; };
+		2920332E1E8F578A004146B7 /* WGCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2920332A1E8F578A004146B7 /* WGCircleView.swift */; };
+		2920332F1E8F578A004146B7 /* WGSegmentedScale.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2920332B1E8F578A004146B7 /* WGSegmentedScale.swift */; };
+		292033301E8F578A004146B7 /* WGSegmentedScaleDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2920332C1E8F578A004146B7 /* WGSegmentedScaleDelegate.swift */; };
 		292A74DC1E8AE18500B7F829 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292A74DB1E8AE18500B7F829 /* AppDelegate.swift */; };
 		292A74DE1E8AE18500B7F829 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292A74DD1E8AE18500B7F829 /* ViewController.swift */; };
 		292A74E11E8AE18500B7F829 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 292A74DF1E8AE18500B7F829 /* Main.storyboard */; };
@@ -50,6 +54,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		292033281E8F578A004146B7 /* WGPopoverView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WGPopoverView.swift; sourceTree = "<group>"; };
+		2920332A1E8F578A004146B7 /* WGCircleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WGCircleView.swift; sourceTree = "<group>"; };
+		2920332B1E8F578A004146B7 /* WGSegmentedScale.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WGSegmentedScale.swift; sourceTree = "<group>"; };
+		2920332C1E8F578A004146B7 /* WGSegmentedScaleDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WGSegmentedScaleDelegate.swift; sourceTree = "<group>"; };
 		292A74D81E8AE18500B7F829 /* SacleWithText.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SacleWithText.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		292A74DB1E8AE18500B7F829 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		292A74DD1E8AE18500B7F829 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -94,6 +102,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		292033271E8F578A004146B7 /* WGPopoverView */ = {
+			isa = PBXGroup;
+			children = (
+				292033281E8F578A004146B7 /* WGPopoverView.swift */,
+			);
+			path = WGPopoverView;
+			sourceTree = "<group>";
+		};
+		292033291E8F578A004146B7 /* WGSegmentedScale */ = {
+			isa = PBXGroup;
+			children = (
+				2920332A1E8F578A004146B7 /* WGCircleView.swift */,
+				2920332B1E8F578A004146B7 /* WGSegmentedScale.swift */,
+				2920332C1E8F578A004146B7 /* WGSegmentedScaleDelegate.swift */,
+			);
+			path = WGSegmentedScale;
+			sourceTree = "<group>";
+		};
 		292A74CF1E8AE18500B7F829 = {
 			isa = PBXGroup;
 			children = (
@@ -126,6 +152,8 @@
 				292A74E41E8AE18500B7F829 /* LaunchScreen.storyboard */,
 				292A74E71E8AE18500B7F829 /* Info.plist */,
 				296666D01E8C4015002D2B98 /* SacleWithText-Bridging-Header.h */,
+				292033271E8F578A004146B7 /* WGPopoverView */,
+				292033291E8F578A004146B7 /* WGSegmentedScale */,
 			);
 			path = SacleWithText;
 			sourceTree = "<group>";
@@ -296,9 +324,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2920332E1E8F578A004146B7 /* WGCircleView.swift in Sources */,
 				292A74DE1E8AE18500B7F829 /* ViewController.swift in Sources */,
 				292A750A1E8AE1E900B7F829 /* WGScaleWithText.swift in Sources */,
+				292033301E8F578A004146B7 /* WGSegmentedScaleDelegate.swift in Sources */,
+				2920332D1E8F578A004146B7 /* WGPopoverView.swift in Sources */,
 				292A74DC1E8AE18500B7F829 /* AppDelegate.swift in Sources */,
+				2920332F1E8F578A004146B7 /* WGSegmentedScale.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
