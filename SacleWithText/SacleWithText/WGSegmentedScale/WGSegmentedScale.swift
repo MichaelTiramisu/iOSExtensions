@@ -54,6 +54,14 @@ class WGSegmentedScale: UIView {
     
     private var _selectedIndex: Int = 0
     
+    // 每一段的长度
+    var segmentLength: CGFloat {
+        let minX = bounds.minX + UIConstants.horizontalBorder
+        let maxX = bounds.maxX - UIConstants.horizontalBorder
+        return (maxX - minX) / CGFloat(numberOfSegments - 1)
+    }
+        
+    
     // MARK: - 画图的方法
     override func draw(_ rect: CGRect) {
         let minX = rect.minX + UIConstants.horizontalBorder
@@ -62,10 +70,6 @@ class WGSegmentedScale: UIView {
         let minY = rect.minY + UIConstants.verticalBorder
         let maxY = rect.maxY - UIConstants.verticalBorder
         let midY = (minY + maxY) / 2
-        
-        
-        // 每一段的长度
-        let segmentLength = (maxX - minX) / CGFloat(numberOfSegments - 1)
         
         let path = UIBezierPath()
         
@@ -88,7 +92,7 @@ class WGSegmentedScale: UIView {
         path.stroke()
     }
     
-    // MARK: - 点击的时间处理
+    // MARK: - 点击的事件处理
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         let currentPosition = touches.first!.location(in: self)
         // 判断点是否在可滑动区域
@@ -101,6 +105,19 @@ class WGSegmentedScale: UIView {
             if !circle.frame.contains(currentPosition) {
                 // 不在圆上的话直接移动到点击点
                 slideToPoint(currentPosition)
+                // 用户点击的代理回调
+                if let delegate = delegate {
+                    if delegate.responds(to: #selector(WGSegmentedScaleDelegate.userDidClick(in:))) {
+                        delegate.userDidClick(in: self)
+                    }
+                }
+            } else {
+                // 用户开始滑动的代理回调
+                if let delegate = delegate {
+                    if delegate.responds(to: #selector(WGSegmentedScaleDelegate.userDidBeginSlide(in:))) {
+                        delegate.userDidBeginSlide(in: self)
+                    }
+                }
             }
         }
     }
@@ -140,13 +157,14 @@ class WGSegmentedScale: UIView {
         isMoving = false
         let oldValue = _selectedIndex
         let newValue = slideToNearestSegmentedPoint()
+        // 这里先更新,要不然会有更新popover view的小bug
+        _selectedIndex = newValue
         // 代理回调
         if let delegate = delegate {
             if delegate.responds(to: #selector(WGSegmentedScaleDelegate.didSelectedIndexChange(in:from:to:))) {
                 delegate.didSelectedIndexChange(in: self, from: oldValue, to: newValue)
             }
         }
-        _selectedIndex = newValue
     }
     
     // MARK: - 判断是否点击在了可滑动区域
