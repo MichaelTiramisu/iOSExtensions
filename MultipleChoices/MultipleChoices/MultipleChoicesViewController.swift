@@ -50,6 +50,17 @@ class MultipleChoicesViewController: UIViewController, UITableViewDelegate, UITa
         multipleChoicesTableView.scrollToRow(at: indexPath, at: .middle, animated: true)
     }
     
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            // Delete the row from the data source
+//            tableView.deleteRows(at: [indexPath], with: .fade)
+            questions.remove(at: indexPath.row)
+            tableView.reloadData()
+        } else if editingStyle == .insert {
+            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+        }
+    }
+    
     // MARK: - Handle the text change event
     func textDidChange(in textField: UITextField) {
         let index = textField.tag
