@@ -15,6 +15,46 @@ class WGScaleWithText: UIView, WGSegmentedScaleDelegate {
     private var segmentedScale: WGSegmentedScale
     private var popoverView: WGPopoverView
     private var contentTextField: UITextField
+    
+    // 有多少段scale的外部暴露变量
+    @IBInspectable public var numberOfSegments: Int {
+        set {
+            if newValue >= 2 {
+                _numberOfSegments = newValue
+            }
+        }
+        get {
+            return _numberOfSegments
+        }
+    }
+    
+    // 有多少段scale
+    private var _numberOfSegments = 5 {
+        didSet {
+            // 增加描述的数组元素个数
+            if _numberOfSegments > oldValue {
+                for _ in oldValue..<_numberOfSegments {
+                    descriptions.append("")
+                }
+            }
+            // 减少描述的数组元素个数
+            if _numberOfSegments < oldValue {
+                for _ in _numberOfSegments..<oldValue {
+                    descriptions.removeLast()
+                }
+            }
+            segmentedScale.numberOfSegments = numberOfSegments
+            // 检查被选中的scale是否超过scale总数
+            if segmentedScale.selectedIndex > _numberOfSegments - 1 {
+                segmentedScale.selectedIndex = _numberOfSegments - 1
+            }
+            // 重新布局UI
+            setNeedsLayout()
+        }
+    }
+    
+    // 存储scale描述的数组
+    public var descriptions = [String]()
 
     override init(frame: CGRect) {
         segmentedScale = WGSegmentedScale(frame: frame)
@@ -22,6 +62,12 @@ class WGScaleWithText: UIView, WGSegmentedScaleDelegate {
         contentTextField = UITextField(frame: frame)
         super.init(frame: frame)
         setupUI()
+        // 初始化描述的数组
+        for _ in 0..<numberOfSegments {
+            descriptions.append("")
+        }
+        // 为contentTextField添加文字改变事件
+        contentTextField.addTarget(self, action:#selector(textDidChange(in:)), for: .editingChanged)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -30,10 +76,14 @@ class WGScaleWithText: UIView, WGSegmentedScaleDelegate {
         contentTextField = UITextField(coder: aDecoder)!
         super.init(coder: aDecoder)
         setupUI()
+        // 初始化描述的数组
+        for _ in 0..<numberOfSegments {
+            descriptions.append("")
+        }
+        // 为contentTextField添加文字改变事件
+        contentTextField.addTarget(self, action:#selector(textDidChange(in:)), for: .editingChanged)
     }
     
-    override func draw(_ rect: CGRect) {
-    }
     
     private func setupUI() {
         print(#function)
@@ -65,14 +115,12 @@ class WGScaleWithText: UIView, WGSegmentedScaleDelegate {
         contentTextField.borderStyle = .roundedRect
         popoverView.addSubview(contentTextField)
         // 为输入的text field添加约束
-//        popoverView.snp.makeConstraints { (make) in
-//            make.top.equalTo(popoverView.snp.top)
-//            make.bottom.equalTo(popoverView.snp.bottom)
-////            make.left.equalTo(popoverView.snp.left)
-////            make.right.equalTo(popoverView.snp.right)
-//            make.leading.equalTo(popoverView.snp.leading)
-//            make.trailing.equalTo(popoverView.snp.trailing)
-//        }
+        contentTextField.snp.makeConstraints { (make) in
+            make.top.equalTo(popoverView.snp.top).offset(5)
+            make.bottom.equalTo(popoverView.snp.bottom).offset(-15)
+            make.left.equalTo(popoverView.snp.left).offset(5)
+            make.right.equalTo(popoverView.snp.right).offset(-5)
+        }
         
         // 隐藏popover view
         popoverView.isHidden = true
@@ -117,8 +165,7 @@ class WGScaleWithText: UIView, WGSegmentedScaleDelegate {
                 popoverView.arrowHorizontalOffset = arrowX - maxX
             }
         }
-        contentTextField.frame = CGRect(x: popoverView.bounds.origin.x + 5, y: popoverView.bounds.origin.y + 5, width: popoverView.bounds.width - 10, height: popoverView.bounds.height - popoverView.arrowHeight - 10)
-//        contentTextField.backgroundColor = UIColor.white
+//        contentTextField.frame = CGRect(x: popoverView.bounds.origin.x + 5, y: popoverView.bounds.origin.y + 5, width: popoverView.bounds.width - 10, height: popoverView.bounds.height - popoverView.arrowHeight - 10)
     }
     
     func buttonClick(_ sender: UIButton) {
@@ -133,13 +180,16 @@ class WGScaleWithText: UIView, WGSegmentedScaleDelegate {
             self.popoverView.alpha = 0
         })
     }
+    
     // 用户直接点击的代理方法(没有点在圆上)
     func userDidClick(in segmetedScale: WGSegmentedScale) {
         print(#function)
         self.popoverView.alpha = 0
     }
+    
     // 索引改变的代理
     func didSelectedIndexChange(in segmentedScale: WGSegmentedScale, from oldValue: Int, to newValue: Int) {
+        print(#function)
         layoutPopoverView(for: newValue)
         if popoverView.isHidden {
             popoverView.isHidden = false
@@ -147,7 +197,13 @@ class WGScaleWithText: UIView, WGSegmentedScaleDelegate {
         UIView.animate(withDuration: 1, animations: {
             self.popoverView.alpha = 1
         })
+        // 设置ContentTextField对应的描述元素
+        contentTextField.text = descriptions[newValue]
     }
     
+    // MARK:- 处理contentTextField输入改变事件
+    func textDidChange(in textField: UITextField) {
+        descriptions[segmentedScale.selectedIndex] = textField.text!
+    }
 
 }
